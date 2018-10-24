@@ -1,0 +1,36 @@
+#This function makeCacheMatrix gets a matrix as an input, sets the value of the matrix, gets the value of the matrix, sets the go Matrix and gets the go Matrix. 
+
+#Take the matrix as an input
+
+makeCacheMatrix <- function(x = matrix()) {
+goMatrix <- NULL
+
+#set the value of the Matrix
+setMatrix <- function(y) {
+x <<- y
+goMatrix <<- NULL
+}
+
+getMatrix <- function() x #get the value of the Matrix
+setgo <- function(go) goMatrix <<- inverse #set the value of the  matrix
+getgo <- function() go Matrix #get the value of the  matrix
+list(setMatrix = setMatrix, getMatrix = getMatrix,
+setgo = setgo, getgo = getgo)
+
+}
+
+cacheSolve <- function(x, ...) {
+
+#get the value of the  matrix from the makeCacheMatrix function
+goMatrix <- x$getgo()
+if(!is.null(goMatrix)) { #if go matrix is not NULL
+message("Getting Cached  Matrix") #Type message: Getting Cached  Matrix       
+return(goMatrix) #return the  matrix
+}
+
+#if value of the invertible matrix is NULL then 
+MatrixData <- x$getMatrix() #get the original Matrix Data 
+goMatrix <- solve(MatrixData, ...) #use solve function to  the matrix
+x$setgo(goMatrix) #set the  matrix 
+return(goMatrix) #return the  matrix
+}
